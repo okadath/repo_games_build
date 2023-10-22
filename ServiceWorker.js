@@ -1,9 +1,9 @@
 const cacheName = "DefaultCompany-2d_urp_23-1.0";
 const contentToCache = [
     "Build/build_web.loader.js",
-    "Build/build_web.framework.js",
-    "Build/build_web.data",
-    "Build/build_web.wasm",
+    "Build/build_web.framework.js.unityweb",
+    "Build/build_web.data.unityweb",
+    "Build/build_web.wasm.unityweb",
     "TemplateData/style.css"
 
 ];

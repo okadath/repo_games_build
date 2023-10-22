@@ -1,6 +1,6 @@
 server {
     listen 8004;
-    server_name  t_unity_01.vintaw.com;
+    server_name  tunity01.vintaw.com;
 root /var/telelog/repo_games_build/;
  
 
@@ -30,8 +30,17 @@ location ~  .+\.wasm\.gz$ {
     # Enable streaming WebAssembly compilation by specifying the correct MIME type for
     # Wasm files.
     default_type application/wasm;
+        gzip on;
+    gzip_types application/wasm;
+    add_header Content-Type application/wasm;
 }
 
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/tunity01.vintaw.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/tunity01.vintaw.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
  
  }   
  
