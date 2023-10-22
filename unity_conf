@@ -1,6 +1,6 @@
 server {
     listen 8004;
-    server_name  146.190.62.31;
+    server_name  t_unity_01.vintaw.com;
 root /var/telelog/repo_games_build/;
  
 
