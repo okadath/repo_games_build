@@ -2,14 +2,11 @@ server {
     listen 8004;
     server_name  tunity01.vintaw.com;
 root /var/telelog/repo_games_build/;
- 
-
 # On-disk gzip-precompressed data files should be served with compression enabled:
 location ~  .+\.(data|symbols\.json)\.gz$ {
     #  alias /var/telelog/repo_games_build/;
     gzip off; # Do not attempt dynamic gzip compression on an already compressed file
     add_header Content-Encoding gzip;
-    
     default_type application/gzip;
 }
 
@@ -18,7 +15,7 @@ location ~  .+\.(data|symbols\.json)\.gz$ {
 location ~ .+\.js\.gz$ {
     #  alias /var/telelog/repo_games_build/;
     gzip off; # Do not attempt dynamic gzip compression on an already compressed file
-    add_header Content-Encoding gzip; # The correct MIME type here would be application/octet-stream, but due to Safari bug https://bugs.webkit.org/show_bug.cgi?id=247421, it's preferable to use MIME Type application/gzip instead.
+    add_header Content-Encoding gzip; # The correct MIME type here would be application/octet-stream, but due to Safari bug ht>
     default_type application/javascript;
 }
 
@@ -30,10 +27,16 @@ location ~  .+\.wasm\.gz$ {
     # Enable streaming WebAssembly compilation by specifying the correct MIME type for
     # Wasm files.
     default_type application/wasm;
-        gzip on;
+#        gzip on;
     gzip_types application/wasm;
     add_header Content-Type application/wasm;
 }
+
+    location ~ .+\.unityweb$ {
+        gzip off; # Do not attempt dynamic gzip compression on an already compressed file
+        add_header Content-Encoding gzip;
+        default_type application/octet-stream;  # You can change this MIME type if you have a more specific one for .unityweb >
+    }
 
 
     listen 443 ssl; # managed by Certbot
